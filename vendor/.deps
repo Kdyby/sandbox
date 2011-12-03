@@ -1,0 +1,40 @@
+[nette]
+    git=http://github.com/nette/nette.git
+
+[symfony]
+    git=http://github.com/symfony/symfony.git
+    version=v2.0.6
+
+[framework]
+    git=http://github.com/kdyby/framework.git
+
+[cms]
+    git=http://github.com/kdyby/cms.git
+
+[doctrine]
+    git=http://github.com/doctrine/doctrine2.git
+    version=2.1.4
+
+[doctrine-common]
+    git=http://github.com/doctrine/common.git
+    version=2.1.3
+
+[doctrine-dbal]
+    git=http://github.com/doctrine/dbal.git
+    version=2.1.5
+
+[doctrine-migrations]
+    git=http://github.com/doctrine/migrations.git
+
+[doctrine-data-fixtures]
+    git=http://github.com/doctrine/data-fixtures.git
+
+[doctrine-extensions]
+    git=http://github.com/beberlei/DoctrineExtensions.git
+
+[doctrine-gedmo]
+    git=http://github.com/l3pp4rd/DoctrineExtensions.git
+    version=2.1.x
+
+[texy]
+    git=http://github.com/dg/texy.git

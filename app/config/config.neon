@@ -1,0 +1,8 @@
+imports:
+    - { resource: parameters.ini }
+
+
+services:
+  application.router:
+    class: Nette\Application\Routers\RouteList
+    configurator: [%configurator.class%, configureDefaultRouter]

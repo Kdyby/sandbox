@@ -1,8 +1,9 @@
+#!/usr/bin/env php
 <?php
 
 // load bootstrap file
 require_once __DIR__ . '/../app/autoload.php';
 
 // Run the application
-$app = new Kdyby\Application\Application();
-$app->run();
+$app = new Kdyby\Application\Console(__DIR__);
+exit($app->run());

@@ -1,0 +1,4 @@
+[
+	{"class":"Kdyby\\Packages\\FrameworkPackage\\FrameworkPackage"},
+	{"class":"Kdyby\\Packages\\DoctrinePackage\\DoctrinePackage"}
+]

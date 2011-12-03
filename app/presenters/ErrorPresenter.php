@@ -6,10 +6,6 @@ use Nette\Diagnostics\Debugger,
 
 
 /**
- * Error presenter.
- *
- * @author     John Doe
- * @package    MyApplication
  */
 class ErrorPresenter extends BasePresenter
 {

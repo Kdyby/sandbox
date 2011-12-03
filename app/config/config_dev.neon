@@ -1,0 +1,11 @@
+imports:
+    - { resource: config.neon }
+
+
+doctrine:
+  dbal:
+    host: 127.0.0.1
+    dbname: database
+    user: root
+    password: pass
+  orm:

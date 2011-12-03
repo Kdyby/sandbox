@@ -1,1 +1,1 @@
-# see http://www.robotstxt.org/orig.html for documentation
+# See http://www.robotstxt.org/orig.html for documentation

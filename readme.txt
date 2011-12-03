@@ -1,4 +1,4 @@
-Nette Framework Sandbox
+Kdyby Framework Sandbox
 =======================
 
 The basic structure for your application.
@@ -20,18 +20,19 @@ technologies and approaches like AJAX, HTML5, SEO, DRY, KISS, MVC, etc.
 Requirements
 ------------
 
-Nette Framework requires PHP 5.2.0 and/or 5.3.0.
+Requires PHP 5.3.0 or higher.
 
 
 Installing
 ----------
 
-Make directories 'sandbox/temp' and 'sandbox/log' writable.
+Make directories 'sandbox/app/temp', 'sandbox/app/log' and 'sandbox/www/assets' writable. Then run in console
 
-It is CRITICAL that file 'sandbox/app/config.neon' & whole 'sandbox/app', 'sandbox/log'
-and 'sandbox/temp' directory are NOT accessible directly via a web browser! If you
-don't protect this directory from direct web access, anybody will be able to see
-your sensitive data. See: http://nette.org/security-warning
+$ vendor/vendors
+
+It is CRITICAL that directory 'sandbox/app' is NOT accessible directly via a web browser! If you
+don't protect this directory from direct web access, anybody will be able to see your sensitive data. 
+See: http://nette.org/security-warning
 
 
 Documentation, Examples, Sandbox, Tools
