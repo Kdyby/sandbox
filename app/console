@@ -5,5 +5,9 @@
 require_once __DIR__ . '/../app/autoload.php';
 
 // Run the application
-$app = new Kdyby\Application\Console(__DIR__);
+$app = new Kdyby\Console\Application(array(
+    'appDir' => __DIR__,
+    'wwwDir' => __DIR__ . '/../www',
+), 'console', TRUE);
+
 exit($app->run());
