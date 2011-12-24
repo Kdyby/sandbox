@@ -1,0 +1,100 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * This file is part of the Kdyby (http://www.kdyby.org)
+ *
+ * Copyright (c) 2008, 2011 Filip Procházka (filip.prochazka@kdyby.org)
+ *
+ * @license http://www.kdyby.org/license
+ */
+
+set_time_limit(0);
+function msg() { exit(implode("\n", func_get_args()) . "\n\n\n"); }
+
+$scriptName = array_shift($argv); // drop filename
+if (!isset($argv[0])) { // no command provided, show help
+    msg("Kdyby vendors script management.",
+        "Specify a command to run:",
+        " install: install vendors as specified in .deps or .deps.lock (recommended)",
+        " update:  update vendors to their latest versions (as specified in deps)");
+}
+
+// validate command
+if (!in_array($command = array_shift($argv), array('install', 'update', 'reinstall'))) {
+    msg("Command " . $command . " does not exist.");
+}
+
+// check distribution
+if (is_dir(__DIR__ . '/kdyby') && !is_dir(__DIR__ . '/kdyby/.git') && $command !== 'reinstall') {
+    msg("Your project seems to be based on a distribution, that includes vendors.",
+        "Try to run \$ " . $scriptName . " reinstall");
+}
+
+// versions lock
+$versions = array();
+if (in_array($command, array('install', 'reinstall')) && file_exists(__DIR__ . '/.deps.lock')) {
+    foreach (file(__DIR__ . '/.deps.lock', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $parts = array_values(array_filter(explode(' ', $line)));
+        if (count($parts) !== 2) {
+            msg("The .deps.lock version file is not valid (near " . $line . ")");
+        }
+        $versions[$parts[0]] = $parts[1];
+    }
+}
+
+// vendors list
+if (FALSE === $deps = @parse_ini_file(__DIR__ . '/.deps', TRUE, INI_SCANNER_RAW)) {
+    msg("The deps file is not valid ini syntax. Perhaps missing a trailing newline?");
+}
+$newversions = array();
+foreach ($deps as $name => $dep) {
+    $dep = array_map('trim', $dep);
+
+    // revision
+    if (isset($versions[$name])) {
+        $rev = $versions[$name];
+    } else {
+        $rev = isset($dep['version']) ? $dep['version'] : 'origin/HEAD';
+    }
+
+    // install dir
+    $installDir = isset($dep['target']) ? __DIR__ . '/' . $dep['target'] : __DIR__ . '/' . $name;
+    if ($command === 'reinstall') {
+        if (PHP_OS == 'WINNT') {
+            system('rmdir /S /Q ' . escapeshellarg(realpath($installDir)));
+        } else {
+            system('rm -rf ' . escapeshellarg($installDir));
+        }
+    }
+
+    // url
+    if (!isset($dep['git'])) {
+        msg('The "git" value for the "' . $name . '" dependency must be set.');
+    }
+    $url = $dep['git'];
+
+    // install
+    if (!is_dir($installDir)) {
+        echo "\$ install $name\n";
+        system('git clone ' . escapeshellarg($url) . ' ' . escapeshellarg($installDir));
+    }
+
+    // update
+    echo "\$ update $name\n";
+    system('cd ' . escapeshellarg($installDir) .' && git fetch origin && git reset --hard ' . escapeshellarg($rev));
+
+    // save version
+    if ($command === 'update') {
+        ob_start();
+        system('cd ' . escapeshellarg($installDir) . ' && git log -n 1 --format=%H');
+        $newversions[] = trim($name . ' ' . ob_get_clean());
+    }
+}
+
+// update?
+if ($command === 'update') {
+    file_put_contents(__DIR__ . '/.deps.lock', implode("\n", $newversions));
+}
+
+// TODO: run clear cache & update assets
