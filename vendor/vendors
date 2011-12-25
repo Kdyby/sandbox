@@ -84,6 +84,8 @@ class Vendors
 		}
 
 		$this->isUpdate() && $this->freezeVersions();
+
+		$this->console('kdyby:clear-cache');
 	}
 
 
@@ -277,6 +279,19 @@ class Vendors
 	private function freezeVersions()
 	{
 		file_put_contents(__DIR__ . '/.deps.lock', implode("\n", $this->newVersions));
+	}
+
+
+
+	/**
+	 * Run application console command
+	 * @param string $command
+	 * @return string
+	 */
+	private function console($command)
+	{
+		$console = realpath(dirname(dirname($this->scriptName)) . '/app/console');
+		system(escapeshellarg($console) . ' ' . $command);
 	}
 
 
