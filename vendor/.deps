@@ -35,3 +35,6 @@
 
 [texy]
     git=https://github.com/dg/texy.git
+
+[assetic]
+    git=https://github.com/kriswallsmith/assetic.git
