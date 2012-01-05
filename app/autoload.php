@@ -28,6 +28,7 @@ $loader->registerNamespaces(array(
 	'Doctrine\\ORM' => __DIR__ . '/../vendor/doctrine/lib',
 	'DoctrineExtensions' => __DIR__ . '/../vendor/doctrine-extensions/lib',
 	'Gedmo' => __DIR__ . '/../vendor/doctrine-gedmo/lib',
+	'Assetic' => __DIR__ . '/../vendor/assetic/src',
 ));
 $loader->registerNamespaceFallbacks(array(
     'Kdyby' => __DIR__ . '/../vendor/cms/libs',
