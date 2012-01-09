@@ -45,6 +45,7 @@ AnnotationRegistry::registerFile(__DIR__ . '/../vendor/doctrine/lib/Doctrine/ORM
 // robot
 $robot = new Kdyby\Loaders\RobotLoader;
 $robot->addDirectory(__DIR__ . '/presenters');
+$robot->addDirectory(__DIR__ . '/components');
 $robot->register();
 
 unset($loader, $robot); // cleanup

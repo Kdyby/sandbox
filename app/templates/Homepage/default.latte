@@ -1,3 +1,5 @@
+{stylesheet 'css/print.css', media => "print"}
+
 {* This is the welcome page, you can delete it *}
 
 {block content}
@@ -45,6 +47,8 @@
 
 		<pre><code class="jush-php">{file_get_contents($presenter->reflection->fileName)}</code></pre>
 	</section>
+
+    {control foo}
 
 	<footer>PHP {=PHP_VERSION} |
 		{ifset $_SERVER['SERVER_SOFTWARE']}Server {$_SERVER['SERVER_SOFTWARE']}{/ifset} |

@@ -10,4 +10,16 @@ class HomepagePresenter extends BasePresenter
 		$this->template->anyVariable = 'any value';
 	}
 
+
+
+	/**
+	 * @return FooControl
+	 */
+	protected function createComponentFoo()
+	{
+		$foo = new FooControl;
+		$foo->setTemplateConfigurator($this->context->templateConfigurator);
+		return $foo;
+	}
+
 }

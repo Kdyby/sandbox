@@ -1,11 +1,17 @@
 services:
-    router:
-        setup:
-            - ['Kdyby\Config\Configurator','configureDefaultRouter']
-
     cms_headerControl:
         class: Kdyby\Components\Header\HeaderControl
         arguments: [@application, @assetic_formulaeManager, @httpRequest]
+
+    route_index:
+        class: Nette\Application\Routers\Route('index.php', 'Homepage:default', 1)
+        autowired: FALSE
+        tags: {route: {priority: 1}}
+
+    route_default:
+        class: Nette\Application\Routers\Route('<presenter>/<action>[/<id>]', 'Homepage:default')
+        autowired: FALSE
+        tags: {route: {priority: 1}}
 
 factories:
     cms_headerControl_macro:
@@ -13,3 +19,4 @@ factories:
         factory: Kdyby\Components\Header\HeadMacro::install
         arguments: ['%parser%']
         parameters: [parser]
+
