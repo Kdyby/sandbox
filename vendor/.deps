@@ -1,12 +1,15 @@
 [nette]
     git=https://github.com/nette/nette.git
 
+[framework]
+    git=git://github.com/Kdyby/Framework.git
+
+[cms]
+    git=git://github.com/Kdyby/CMS.git
+
 [symfony]
     git=https://github.com/symfony/symfony.git
     version=v2.0.6
-
-[framework]
-    git=git://github.com/Kdyby/Framework.git
 
 [doctrine]
     git=https://github.com/doctrine/doctrine2.git
