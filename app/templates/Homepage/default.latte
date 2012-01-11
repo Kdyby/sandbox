@@ -48,15 +48,13 @@
 		<pre><code class="jush-php">{file_get_contents($presenter->reflection->fileName)}</code></pre>
 	</section>
 
-    {control foo}
-
 	<footer>PHP {=PHP_VERSION} |
 		{ifset $_SERVER['SERVER_SOFTWARE']}Server {$_SERVER['SERVER_SOFTWARE']}{/ifset} |
 		Nette Framework {=Nette\Framework::VERSION}</footer>
 </div>
 
-<script src="http://jush.sourceforge.net/jush.js"></script>
-<script>
+{javascript "http://jush.sourceforge.net/jush.js"}
+<script n:javascript>
 	jush.create_links = false;
 	jush.highlight_tag('code');
 	$('code.jush').each(function(){ $(this).html($(this).html().replace(/\x7B[/$\w].*?\}/g, '<span class="jush-latte">$&</span>')) });
