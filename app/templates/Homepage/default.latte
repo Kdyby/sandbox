@@ -61,8 +61,8 @@
 		Nette Framework {=Nette\Framework::VERSION}</footer>
 </div>
 
-<script n:javascript="http://jush.sourceforge.net/jush.js"></script>
-<script n:javascript>
+<script n:js="http://jush.sourceforge.net/jush.js"></script>
+<script n:js>
 	jush.create_links = false;
 	jush.highlight_tag('code');
 	$('code.jush').each(function(){ $(this).html($(this).html().replace(/\x7B[/$\w].*?\}/g, '<span class="jush-latte">$&</span>')) });
