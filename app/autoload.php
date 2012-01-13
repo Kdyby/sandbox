@@ -10,6 +10,7 @@
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
+
 // load Nette Framework first
 require_once __DIR__ . '/../vendor/nette/Nette/loader.php';
 

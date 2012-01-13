@@ -8,7 +8,9 @@ abstract class BasePresenter extends Kdyby\Application\UI\Presenter
 	public function templatePrepareFilters($template)
 	{
 		parent::templatePrepareFilters($template);
-		Kdyby\Components\Header\HeadMacro::install($this->templateConfigurator->getLatteParser());
+		$compiler = $this->templateConfigurator->getLatte()->getCompiler();
+
+		Kdyby\Components\Header\HeadMacro::install($compiler);
 	}
 
 
