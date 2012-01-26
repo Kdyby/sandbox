@@ -18,7 +18,7 @@ class HomepagePresenter extends BasePresenter
 	protected function createComponentFoo()
 	{
 		$foo = new FooControl;
-		$foo->setTemplateConfigurator($this->context->templateConfigurator);
+		$foo->setTemplateConfigurator($this->context->kdyby->templateConfigurator);
 		return $foo;
 	}
 

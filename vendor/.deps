@@ -1,5 +1,6 @@
 [nette]
     git=https://github.com/nette/nette.git
+    version=v2.0-rc2
 
 [framework]
     git=git://github.com/Kdyby/Framework.git
@@ -22,9 +23,6 @@
 [doctrine-dbal]
     git=https://github.com/doctrine/dbal.git
     version=2.1.5
-
-[doctrine-migrations]
-    git=https://github.com/doctrine/migrations.git
 
 [doctrine-data-fixtures]
     git=https://github.com/doctrine/data-fixtures.git

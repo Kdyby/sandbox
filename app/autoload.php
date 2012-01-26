@@ -20,8 +20,9 @@ require_once __DIR__ . '/../vendor/symfony/src/Symfony/Component/ClassLoader/Uni
 // libraries
 $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Kdyby' => __DIR__ . '/../vendor/framework/libs',
-    'Symfony' => __DIR__ . '/../vendor/symfony/src',
+	'App' => __DIR__ . '/libs',
+	'Kdyby' => __DIR__ . '/../vendor/framework/libs',
+	'Symfony' => __DIR__ . '/../vendor/symfony/src',
 	'Doctrine\\Common\\DataFixtures' => __DIR__ . '/../vendor/doctrine-data-fixtures/lib',
 	'Doctrine\\Common' => __DIR__ . '/../vendor/doctrine-common/lib',
 	'Doctrine\\DBAL\\Migrations' => __DIR__ . '/../vendor/doctrine-migrations/lib',
