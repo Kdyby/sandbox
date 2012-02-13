@@ -205,6 +205,11 @@ class Vendors
 	 */
 	private function remove($name, $dir)
 	{
+		if (is_link($dir)) {
+			echo "\$ I'm afraid of symlinks! Skipping $dir\n";
+			return;
+		}
+
 		echo "\$ remove $name\n";
 		if (PHP_OS == 'WINNT') {
 			system('rmdir /S /Q ' . escapeshellarg(realpath($dir)));
@@ -222,6 +227,11 @@ class Vendors
 	 */
 	private function fetchVersion($name, $dir)
 	{
+		if (is_link($dir)) {
+			echo "\$ I'm pretty sure you would be mad if I'd hard reset symlink to $name, would you?\n";
+			return;
+		}
+
 		$rev = $this->depRevision($name);
 
 		echo "\$ update $name\n";
