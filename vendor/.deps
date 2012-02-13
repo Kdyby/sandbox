@@ -1,6 +1,6 @@
 [nette]
     git=https://github.com/nette/nette.git
-    version=v2.0-rc2
+    version=v2.0
 
 [framework]
     git=git://github.com/Kdyby/Framework.git

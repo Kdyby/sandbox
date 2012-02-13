@@ -2,6 +2,17 @@ includes:
     - config.neon
 
 
+nette:
+    application:
+        debugger: TRUE
+    routing:
+        debugger: TRUE
+    security:
+        debugger: TRUE
+    container:
+        debugger: TRUE
+
+
 dbal:
     host: 127.0.0.1
     dbname: database

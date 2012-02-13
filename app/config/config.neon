@@ -1,5 +1,5 @@
 services:
-    cms.headerControl:
+    headerControl:
         class: Kdyby\Components\Header\HeaderControl
         arguments: [@application, @assetic.formulaeManager, @httpRequest]
 

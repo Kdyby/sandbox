@@ -20,7 +20,7 @@ abstract class BasePresenter extends Kdyby\Application\UI\Presenter
 	 */
 	protected function createComponentHead()
 	{
-		return $this->getContext()->cms_headerControl;
+		return $this->getContext()->headerControl;
 	}
 
 }
