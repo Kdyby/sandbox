@@ -58,4 +58,64 @@ class Root extends SharedFields
 		$this->buddies = new ArrayCollection();
 	}
 
+
+
+	/**
+	 * @param $name
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+
+
+	/**
+	 * @return null|string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+
+
+
+	/**
+	 * @return \App\ExamplePackage\Entity\Related[]|\Doctrine\Common\Collections\ArrayCollection
+	 */
+	public function getBuddies()
+	{
+		return $this->buddies;
+	}
+
+
+
+	/**
+	 * @return \App\ExamplePackage\Entity\Related[]|\Doctrine\Common\Collections\ArrayCollection
+	 */
+	public function getChildren()
+	{
+		return $this->children;
+	}
+
+
+
+	/**
+	 * @param \App\ExamplePackage\Entity\Related $daddy
+	 */
+	public function setDaddy(Related $daddy)
+	{
+		$this->daddy = $daddy;
+	}
+
+
+
+	/**
+	 * @return \App\ExamplePackage\Entity\Related
+	 */
+	public function getDaddy()
+	{
+		return $this->daddy;
+	}
+
 }
