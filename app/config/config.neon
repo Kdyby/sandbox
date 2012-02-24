@@ -1,22 +1,19 @@
 services:
-    headerControl:
-        class: Kdyby\Components\Header\HeaderControl
-        arguments: [@application, @assetic.formulaeManager, @httpRequest]
+    route.examples:
+        class: Nette\Application\Routers\Route('examples/<presenter>/<action>', {module: AppExamplePackage, presenter: Homepage, action: default})
+        autowired: FALSE
+        tags: {route: {priority: 3}}
+
+    route.default:
+        class: Nette\Application\Routers\Route('<presenter>/<action>', 'Homepage:default')
+        autowired: FALSE
+        tags: {route: {priority: 2}}
 
     route.index:
         class: Nette\Application\Routers\Route('index.php', 'Homepage:default', 1)
         autowired: FALSE
         tags: {route: {priority: 1}}
 
-    route.default:
-        class: Nette\Application\Routers\Route('<presenter>/<action>[/<id>]', 'Homepage:default')
-        autowired: FALSE
-        tags: {route: {priority: 1}}
 
-factories:
-    cms.headerControl.macro:
-        class: Kdyby\Components\Header\HeadMacro
-        factory: Kdyby\Components\Header\HeadMacro::install
-        arguments: ['%parser%']
-        parameters: [parser]
-
+php:
+    date.timezone: Europe/Prague

@@ -3,7 +3,5 @@ includes:
 
 
 dbal:
-    host: 127.0.0.1
-    dbname: database
-    user: root
-    password: pass
+    path: %appDir%/data/database.sqlite
+    driver: pdo_sqlite

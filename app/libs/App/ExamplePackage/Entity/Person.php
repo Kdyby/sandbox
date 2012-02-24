@@ -20,13 +20,13 @@ use Nette;
  * @Orm:Entity()
  * @author Filip Procházka <filip.prochazka@kdyby.org>
  */
-class Root extends SharedFields
+class Person extends Kdyby\Doctrine\Entities\IdentifiedEntity
 {
 
 	/**
 	 * @Orm:Column(type="string")
 	 */
-	protected $name;
+	protected $fullname;
 
 	/**
 	 * @Orm:ManyToOne(targetEntity="Related", cascade={"persist"})
@@ -53,7 +53,7 @@ class Root extends SharedFields
 	 */
 	public function __construct($name = NULL)
 	{
-		$this->name = $name;
+		$this->fullname = $name;
 		$this->children = new ArrayCollection();
 		$this->buddies = new ArrayCollection();
 	}
@@ -63,9 +63,9 @@ class Root extends SharedFields
 	/**
 	 * @param $name
 	 */
-	public function setName($name)
+	public function setFullname($name)
 	{
-		$this->name = $name;
+		$this->fullname = $name;
 	}
 
 
@@ -73,49 +73,9 @@ class Root extends SharedFields
 	/**
 	 * @return null|string
 	 */
-	public function getName()
+	public function getFullname()
 	{
-		return $this->name;
-	}
-
-
-
-	/**
-	 * @return \App\ExamplePackage\Entity\Related[]|\Doctrine\Common\Collections\ArrayCollection
-	 */
-	public function getBuddies()
-	{
-		return $this->buddies;
-	}
-
-
-
-	/**
-	 * @return \App\ExamplePackage\Entity\Related[]|\Doctrine\Common\Collections\ArrayCollection
-	 */
-	public function getChildren()
-	{
-		return $this->children;
-	}
-
-
-
-	/**
-	 * @param \App\ExamplePackage\Entity\Related $daddy
-	 */
-	public function setDaddy(Related $daddy)
-	{
-		$this->daddy = $daddy;
-	}
-
-
-
-	/**
-	 * @return \App\ExamplePackage\Entity\Related
-	 */
-	public function getDaddy()
-	{
-		return $this->daddy;
+		return $this->fullname;
 	}
 
 }

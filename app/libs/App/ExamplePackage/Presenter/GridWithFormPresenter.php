@@ -20,25 +20,39 @@ use Nette;
 
 /**
  */
-class EntityFormAddPresenter extends \BasePresenter
+class GridWithFormPresenter extends \BasePresenter
 {
+
+	protected function startup()
+	{
+		parent::startup();
+
+		bd($this->getDoctrine()->getDao('App\ExamplePackage\Entity\Root')->findAll());
+	}
+
+
 
 	/**
 	 * @return \Kdyby\Doctrine\Forms\Form
 	 */
-	protected function createComponentForm()
+	protected function createComponentAddForm()
 	{
-		$root = new Entity\Root();
-		$form = new Form($this->context->doctrine, $root);
+		$form = new Form($this->getDoctrine(), new Entity\Root());
 
-		$form->addText('name', 'Jméno');
-		$form->addSelect('daddy', 'Táta')->setMapper('name');
-		$form->addMany('children', function (EntityContainer $container) {
-			$container->addText('name');
-		});
+		$form->addText('name', 'Jméno')
+			->setRequired();
+		$form->addSelect('daddy', 'Rodič')
+			->setPrompt('<rodič>')
+			->setMapper('name');
 
 		$form->addSubmit('add', 'Přidat');
-		$form->onSuccess[] = callback($this, 'handleFormSuccess');
+		$form->onSuccess[] = function ($form, $entity) {
+			dump($entity);
+		};
+		$form->onSuccess[] = function (Form $form) {
+			$form->presenter->flashMessage("Přidán " . $form->values->name);
+		};
+		$form->onSuccess[] = $this->lazyLink('this');
 
 		return $form;
 	}
@@ -46,12 +60,14 @@ class EntityFormAddPresenter extends \BasePresenter
 
 
 	/**
-	 * @param \Kdyby\Doctrine\Forms\Form $form
-	 * @param object $entity
+	 * @return \Kdyby\Components\Grinder\Grid
 	 */
-	public function handleFormSuccess(Form $form, $entity)
+	protected function createComponentItems()
 	{
-		dump($entity);
+		$qb = $this->getDoctrine()->getDao('App\ExamplePackage\Entity\Root')
+			->createQueryBuilder('r');
+
+		return new \Kdyby\Components\Grinder\Grid($qb);
 	}
 
 }
