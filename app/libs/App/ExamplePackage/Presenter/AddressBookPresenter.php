@@ -24,20 +24,31 @@ use Nette;
 class AddressBookPresenter extends \BasePresenter
 {
 
+	protected function beforeRender()
+	{
+		parent::beforeRender();
+		$this['head']->titleReverse = TRUE;
+		$this['head']->addTitle("Ukázková aplikace Kdyby");
+		$this['head']->addTitle("Adresář");
+	}
+
+
+	/*********************** default *************************/
+
+
+	public function renderDefault()
+	{
+		$this['head']->addTitle("Přehled kontaktů");
+	}
+
+
+
 	/**
-	 * @return \App\ExamplePackage\Form\PersonForm
+	 * @return \App\ExamplePackage\Form\CreatePersonForm
 	 */
 	protected function createComponentAddForm()
 	{
-		$form = new Form\PersonForm($this->getDoctrine(), new Entity\Person);
-
-		$form->addSubmit('add', 'Přidat');
-		$form->onSuccess[] = function (Form\PersonForm $form) {
-			$form->presenter->flashMessage("Přidán(a) " . $form->values->fullname);
-		};
-		$form->onSuccess[] = $this->lazyLink('this');
-
-		return $form;
+		return new Form\CreatePersonForm($this->getDoctrine(), new Entity\Person);
 	}
 
 
@@ -48,6 +59,53 @@ class AddressBookPresenter extends \BasePresenter
 	protected function createComponentItems()
 	{
 		return new Control\PeopleGrid($this->getDoctrine());
+	}
+
+
+	/*********************** edit *************************/
+
+
+	/** @var \App\ExamplePackage\Entity\Person */
+	private $person;
+
+
+
+	/**
+	 * @param int $person
+	 */
+	public function actionEdit($person = 0)
+	{
+		$people = $this->getRepository('App\ExamplePackage\Entity\Person');
+		if (!$this->person = $people->find($person)) {
+			$this->error("Requested person does not exists.");
+		}
+	}
+
+
+
+	/**
+	 */
+	public function renderEdit()
+	{
+		$this['head']->addTitle("Úprava detailů");
+	}
+
+
+
+	/**
+	 * @return \App\ExamplePackage\Form\EditPersonForm
+	 */
+	protected function createComponentEditForm()
+	{
+		return new Form\EditPersonForm($this->getDoctrine(), $this->person);
+
+		$form->addSubmit('save', 'Uložit změny údajů');
+		$form->onSuccess[] = function (Form\PersonForm $form) {
+			$form->presenter->flashMessage("Kontakt " . $form->values->fullname . " by upraven.");
+		};
+		$form->onSuccess[] = $this->lazyLink('default');
+
+		return $form;
 	}
 
 }

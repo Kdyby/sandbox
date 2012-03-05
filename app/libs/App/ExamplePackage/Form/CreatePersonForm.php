@@ -18,23 +18,28 @@ use Nette;
 /**
  * @author Filip Procházka <filip.prochazka@kdyby.org>
  */
-class PersonForm extends Kdyby\Doctrine\Forms\Form
+class CreatePersonForm extends Kdyby\Doctrine\Forms\Form
 {
 
 	/**
 	 */
 	protected function configure()
 	{
-		$this->addText('fullname', 'Celé jméno')->setRequired();
+		$this->addText('fullname', 'Celé jméno')
+			->setRequired();
 		$this->addDate('birthday', 'Narozeniny');
-		$this->addText('phone', 'Telefón');
+		$this->addText('phone', 'Telefon');
 		$this->addText('email', 'E-mail');
-		$address = $this->addOne('address');
-		$address->addText('street', 'Ulice');
-		$address->addText('number', 'čp.');
-		$address->addText('city', 'Město');
-		$address->addText('zip', 'PSČ');
-		$this->addText('note', 'Poznámka');
+
+		$this->addSubmit('add', 'Přidat');
+	}
+
+
+
+	public function handleSuccess()
+	{
+		$this->presenter->flashMessage("Přidán(a) " . $this->values->fullname);
+		$this->presenter->redirect('this');
 	}
 
 }

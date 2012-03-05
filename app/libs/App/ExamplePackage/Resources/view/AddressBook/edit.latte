@@ -1,0 +1,70 @@
+<style n:block="#head">
+    body { padding: 20px; }
+</style>
+
+{block content}
+<div id="content">
+
+    {form editForm, class => 'form-horizontal'}
+        <fieldset class="control-group">
+            <legend>Osobní údaje</legend>
+
+            <div class="control-group">
+                {label fullname, class => "control-label" /}
+                <div class="controls">
+                    <input n:input="fullname" class="span3" />
+                </div>
+            </div>
+            <div class="control-group">
+                {label phone, class => "control-label" /}
+                <div class="controls">
+                    <input n:input="phone" class="span2" />
+                </div>
+            </div>
+            <div class="control-group">
+                {label email, class => "control-label" /}
+                <div class="controls">
+                    <div class="input-prepend">
+                        <span class="add-on">@</span>
+                        <input n:input="email" class="span3"/>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                {label note, class => "control-label" /}
+                <div class="controls">
+                    {input note, class => 'span5'}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="control-group">
+            <legend>Adresa</legend>
+
+            <div class="control-group">
+                {label address-city, class => "control-label" /}
+                <div class="controls">
+                    <input n:input="address-city" class="span3" />
+                </div>
+            </div>
+            <div class="control-group">
+                {label address-street, class => "control-label" /}
+                <div class="controls">
+                    <input n:input="address-street" class="span2" />
+                    <input n:input="address-number" class="span1" placeholder="čp." />
+                </div>
+            </div>
+            <div class="control-group">
+                {label address-zip, class => "control-label" /}
+                <div class="controls">
+                    <input n:input="address-zip" class="span1" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <input n:input="save" class="btn btn-primary"/>
+                <a n:href="default" class="btn">Vrátit se na přehled beze změn</a>
+            </div>
+        </fieldset>
+    {/form}
+
+</div>

@@ -1,5 +1,7 @@
 {extends $table}
 
+{block #grinderToolbarTop}{/block}
+
 {block #grinderHeader}
     <th n:gridHeader="select"/>
     <th n:gridHeader="fullname">Jméno</th>
@@ -8,6 +10,7 @@
     <th n:gridHeader="note">Poznámka</th>
     <th n:gridHeader="birthday">Narozeniny</th>
     <th n:gridHeader="address.city">Adresa</th>
+    <th></th>
 {/block}
 
 {block #grinderRow}
@@ -18,4 +21,9 @@
     <td n:gridCell="note"/>
     <td n:gridCell="birthday"/>
     <td n:gridCell="address"/>
+    <td n:gridCell="id" width="17">
+        <a href="{plink edit, $value}" title="Upravit">
+            <img src="{$basePath}/images/pencil.png" width="17px" alt="edit" />
+        </a>
+    </td>
 {/block}
