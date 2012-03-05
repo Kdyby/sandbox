@@ -1,0 +1,29 @@
+<style n:block="#head">
+    body { padding: 20px; }
+</style>
+
+{block content}
+<div id="content">
+
+    {form addForm, class => 'form-horizontal'}
+        <fieldset class="control-group">
+            <legend>Přidání kontaktu</legend>
+            <div class="control-group">
+                <input n:input="fullname" placeholder="Celé jméno" />
+                <input n:input="phone" placeholder="Telefon" />
+                <input n:input="email" placeholder="Email" />
+                {input note, class => 'span5', placeholder => "Poznámka"}
+            </div>
+            <div class="control-group">
+                <input n:input="address-street" placeholder="Ulice"/>
+                <input n:input="address-number" placeholder="čp."/>
+                <input n:input="address-city" placeholder="Město"/>
+                <input n:input="address-zip" placeholder="PSČ"/>
+                <input n:input="add" class="btn"/>
+            </div>
+        </fieldset>
+    {/form}
+
+    {control items}
+
+</div>

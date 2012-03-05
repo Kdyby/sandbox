@@ -1,0 +1,21 @@
+{extends $table}
+
+{block #grinderHeader}
+    <th n:gridHeader="select"/>
+    <th n:gridHeader="fullname">Jméno</th>
+    <th n:gridHeader="phone">Telefon</th>
+    <th n:gridHeader="email">Email</th>
+    <th n:gridHeader="note">Poznámka</th>
+    <th n:gridHeader="birthday">Narozeniny</th>
+    <th n:gridHeader="address.city">Adresa</th>
+{/block}
+
+{block #grinderRow}
+    <td n:gridCell="select"/>
+    <td n:gridCell="fullname"/>
+    <td n:gridCell="phone"/>
+    <td n:gridCell="email"/>
+    <td n:gridCell="note"/>
+    <td n:gridCell="birthday"/>
+    <td n:gridCell="address"/>
+{/block}

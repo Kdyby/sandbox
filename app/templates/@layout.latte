@@ -2,9 +2,9 @@
 <html>
 {head title => "Nette Application Skeleton"}
     <meta name="description" content="Nette Framework web application skeleton">
-    {stylesheet 'css/screen.css', media => "screen,projection,tv"}
-    {javascript 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
-        'js/netteForms.js' /}
+    {stylesheet 'css/bootstrap.min.css', 'css/jquery-ui.css', 'css/screen.css', media => "screen,projection,tv"}
+    {javascript 'js/jquery.min.js', 'js/jquery-ui.min.js', '@FrameworkPackage/js/jquery.nette.js',
+        '@FrameworkPackage/js/netteForms.js', '@FrameworkPackage/js/class.js', 'js/bootstrap.min.js', 'js/main.js' /}
     <link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
     {block head}{/block}
 {/head}

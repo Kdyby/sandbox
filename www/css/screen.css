@@ -30,3 +30,7 @@ a[href^="error:"] {
 	background: red;
 	color: white;
 }
+
+.ui-widget {
+	font-size: 13px;
+}

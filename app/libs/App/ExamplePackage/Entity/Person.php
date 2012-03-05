@@ -24,58 +24,188 @@ class Person extends Kdyby\Doctrine\Entities\IdentifiedEntity
 {
 
 	/**
-	 * @Orm:Column(type="string")
+	 * @var string
+	 * @Orm:Column(type="string", nullable=TRUE)
 	 */
-	protected $fullname;
+	private $fullname;
 
 	/**
-	 * @Orm:ManyToOne(targetEntity="Related", cascade={"persist"})
-	 * @var \App\ExamplePackage\Entity\Related
+	 * @var \DateTime
+	 * @Orm:Column(type="date", nullable=TRUE)
 	 */
-	protected $daddy;
+	private $birthday;
 
 	/**
-	 * @Orm:OneToMany(targetEntity="Related", mappedBy="daddy", cascade={"persist"})
-	 * @var \App\ExamplePackage\Entity\Related[]
+	 * @var string
+	 * @Orm:Column(type="string", nullable=TRUE)
 	 */
-	protected $children;
+	private $phone;
 
 	/**
-	 * @Orm:ManyToMany(targetEntity="Related", inversedBy="buddies", cascade={"persist"})
-	 * @var \App\ExamplePackage\Entity\Related[]
+	 * @var string
+	 * @Orm:Column(type="string", nullable=TRUE)
 	 */
-	protected $buddies;
+	private $email;
+
+	/**
+	 * @var \App\ExamplePackage\Entity\Address
+	 * @Orm:ManyToOne(targetEntity="Address", fetch="EAGER")
+	 * @Orm:JoinColumn(name="address_id", referencedColumnName="id")
+	 */
+	private $address;
+
+	/**
+	 * @var string
+	 * @Orm:Column(type="text", nullable=TRUE)
+	 */
+	private $note;
 
 
 
 	/**
-	 * @param string $name
+	 * @param string $fullname
 	 */
-	public function __construct($name = NULL)
+	public function __construct($fullname = NULL)
 	{
-		$this->fullname = $name;
-		$this->children = new ArrayCollection();
-		$this->buddies = new ArrayCollection();
+		$this->fullname = $fullname;
 	}
 
 
 
 	/**
-	 * @param $name
+	 * @param string $fullname
+	 *
+	 * @return \App\ExamplePackage\Entity\Person
 	 */
-	public function setFullname($name)
+	public function setFullname($fullname)
 	{
-		$this->fullname = $name;
+		$this->fullname = $fullname;
+		return $this;
 	}
 
 
 
 	/**
-	 * @return null|string
+	 * @return string
 	 */
 	public function getFullname()
 	{
 		return $this->fullname;
+	}
+
+
+
+	/**
+	 * @param \Datetime|NULL $birthday
+	 *
+	 * @return \App\ExamplePackage\Entity\Person
+	 */
+	public function setBirthday(\Datetime $birthday = NULL)
+	{
+		$this->birthday = $birthday;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return \Datetime|NULL
+	 */
+	public function getBirthday()
+	{
+		return $this->birthday ? clone $this->birthday : NULL;
+	}
+
+
+
+	/**
+	 * @param string $phone
+	 *
+	 * @return \App\ExamplePackage\Entity\Person
+	 */
+	public function setPhone($phone)
+	{
+		$this->phone = $phone;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getPhone()
+	{
+		return $this->phone;
+	}
+
+
+
+	/**
+	 * @param string $email
+	 *
+	 * @return \App\ExamplePackage\Entity\Person
+	 */
+	public function setEmail($email)
+	{
+		$this->email = $email;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getEmail()
+	{
+		return $this->email;
+	}
+
+
+
+	/**
+	 * @param \App\ExamplePackage\Entity\Address $address
+	 *
+	 * @return \App\ExamplePackage\Entity\Person
+	 */
+	public function setAddress(Address $address)
+	{
+		$this->address = $address;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return \App\ExamplePackage\Entity\Address
+	 */
+	public function getAddress()
+	{
+		return $this->address;
+	}
+
+
+
+	/**
+	 * @param string $note
+	 *
+	 * @return \App\ExamplePackage\Entity\Person
+	 */
+	public function setNote($note)
+	{
+		$this->note = $note;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getNote()
+	{
+		return $this->note;
 	}
 
 }

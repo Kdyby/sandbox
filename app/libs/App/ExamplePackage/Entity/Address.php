@@ -10,7 +10,6 @@
 
 namespace App\ExamplePackage\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Kdyby;
 use Nette;
 
@@ -20,48 +19,60 @@ use Nette;
  * @Orm:Entity()
  * @author Filip Procházka <filip.prochazka@kdyby.org>
  */
-class Related extends SharedFields
+class Address extends Kdyby\Doctrine\Entities\IdentifiedEntity
 {
 
 	/**
-	 * @Orm:Column(type="string")
 	 * @var string
+	 * @Orm:Column(type="string", nullable=TRUE)
 	 */
-	protected $name;
+	private $street;
 
 	/**
-	 * @Orm:ManyToOne(targetEntity="Root", inversedBy="children", cascade={"persist"})
-	 * @var \App\ExamplePackage\Entity\Root
+	 * @var integer
+	 * @Orm:Column(type="integer", nullable=TRUE)
 	 */
-	protected $daddy;
+	private $number;
 
 	/**
-	 * @Orm:ManyToMany(targetEntity="Root", mappedBy="buddies", cascade={"persist"})
-	 * @var \App\ExamplePackage\Entity\Root[]
+	 * @var string
+	 * @Orm:Column(type="string", nullable=TRUE)
 	 */
-	protected $buddies;
+	private $city;
+
+	/**
+	 * @var integer
+	 * @Orm:Column(type="integer", nullable=TRUE)
+	 */
+	private $zip;
 
 
 
 	/**
-	 * @param string $name
-	 * @param \App\ExamplePackage\Entity\Root $daddy
+	 * @param string $street
+	 * @param integer $number
+	 * @param string $city
+	 * @param integer $zip
 	 */
-	public function __construct($name = NULL, Root $daddy = NULL)
+	public function __construct($street = NULL, $number = NULL, $city = NULL, $zip = NULL)
 	{
-		$this->name = $name;
-		$this->daddy = $daddy;
-		$this->buddies = new ArrayCollection();
+		$this->street = $street;
+		$this->number = $number;
+		$this->city = $city;
+		$this->zip = $zip;
 	}
 
 
 
 	/**
-	 * @param string $name
+	 * @param string $street
+	 *
+	 * @return Address
 	 */
-	public function setName($name)
+	public function setStreet($street)
 	{
-		$this->name = $name;
+		$this->street = $street;
+		return $this;
 	}
 
 
@@ -69,39 +80,105 @@ class Related extends SharedFields
 	/**
 	 * @return string
 	 */
-	public function getName()
+	public function getStreet()
 	{
-		return $this->name;
+		return $this->street;
 	}
 
 
 
 	/**
-	 * @return \App\ExamplePackage\Entity\Root[]|\Doctrine\Common\Collections\ArrayCollection
+	 * @param integer $number
+	 *
+	 * @return Address
 	 */
-	public function getBuddies()
+	public function setNumber($number)
 	{
-		return $this->buddies;
+		$this->number = $number;
+		return $this;
 	}
 
 
 
 	/**
-	 * @param \App\ExamplePackage\Entity\Root $daddy
+	 * @return integer
 	 */
-	public function setDaddy(Root $daddy)
+	public function getNumber()
 	{
-		$this->daddy = $daddy;
+		return $this->number;
 	}
 
 
 
 	/**
-	 * @return \App\ExamplePackage\Entity\Root
+	 * @param string $city
+	 *
+	 * @return Address
 	 */
-	public function getDaddy()
+	public function setCity($city)
 	{
-		return $this->daddy;
+		$this->city = $city;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getCity()
+	{
+		return $this->city;
+	}
+
+
+
+	/**
+	 * @param integer $zip
+	 *
+	 * @return Address
+	 */
+	public function setZip($zip)
+	{
+		$this->zip = $zip;
+		return $this;
+	}
+
+
+
+	/**
+	 * @return integer
+	 */
+	public function getZip()
+	{
+		return $this->zip;
+	}
+
+
+
+	/**
+	 * @param string $format
+	 *
+	 * @return string
+	 */
+	public function format($format = '%street% %number%, %city% %zip%')
+	{
+		return trim(strtr($format, array(
+			'%street%' => $this->street,
+			'%number%' => $this->number ?: NULL,
+			'%city%' => $this->city,
+			'%zip%' => $this->zip ? : NULL,
+		)), ', ');
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->format();
 	}
 
 }
