@@ -98,14 +98,6 @@ class AddressBookPresenter extends \BasePresenter
 	protected function createComponentEditForm()
 	{
 		return new Form\EditPersonForm($this->getDoctrine(), $this->person);
-
-		$form->addSubmit('save', 'Uložit změny údajů');
-		$form->onSuccess[] = function (Form\PersonForm $form) {
-			$form->presenter->flashMessage("Kontakt " . $form->values->fullname . " by upraven.");
-		};
-		$form->onSuccess[] = $this->lazyLink('default');
-
-		return $form;
 	}
 
 }
