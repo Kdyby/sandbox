@@ -10,13 +10,14 @@
 
 namespace App\ExamplePackage\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Kdyby;
 use Nette;
 
 
 
 /**
- * @Orm:Entity()
+ * @ORM\Entity()
  * @author Filip Procházka <filip.prochazka@kdyby.org>
  */
 class Address extends Kdyby\Doctrine\Entities\IdentifiedEntity
@@ -24,25 +25,25 @@ class Address extends Kdyby\Doctrine\Entities\IdentifiedEntity
 
 	/**
 	 * @var string
-	 * @Orm:Column(type="string", nullable=TRUE)
+	 * @ORM\Column(type="string", nullable=TRUE)
 	 */
 	private $street;
 
 	/**
 	 * @var integer
-	 * @Orm:Column(type="integer", nullable=TRUE)
+	 * @ORM\Column(type="integer", nullable=TRUE)
 	 */
 	private $number;
 
 	/**
 	 * @var string
-	 * @Orm:Column(type="string", nullable=TRUE)
+	 * @ORM\Column(type="string", nullable=TRUE)
 	 */
 	private $city;
 
 	/**
 	 * @var integer
-	 * @Orm:Column(type="integer", nullable=TRUE)
+	 * @ORM\Column(type="integer", nullable=TRUE)
 	 */
 	private $zip;
 

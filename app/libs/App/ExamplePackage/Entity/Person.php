@@ -11,13 +11,14 @@
 namespace App\ExamplePackage\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Kdyby;
 use Nette;
 
 
 
 /**
- * @Orm:Entity()
+ * @ORM\Entity()
  * @author Filip Procházka <filip.prochazka@kdyby.org>
  */
 class Person extends Kdyby\Doctrine\Entities\IdentifiedEntity
@@ -25,38 +26,38 @@ class Person extends Kdyby\Doctrine\Entities\IdentifiedEntity
 
 	/**
 	 * @var string
-	 * @Orm:Column(type="string", nullable=TRUE)
+	 * @ORM\Column(type="string", nullable=TRUE)
 	 */
 	private $fullname;
 
 	/**
 	 * @var \DateTime
-	 * @Orm:Column(type="date", nullable=TRUE)
+	 * @ORM\Column(type="date", nullable=TRUE)
 	 */
 	private $birthday;
 
 	/**
 	 * @var string
-	 * @Orm:Column(type="string", nullable=TRUE)
+	 * @ORM\Column(type="string", nullable=TRUE)
 	 */
 	private $phone;
 
 	/**
 	 * @var string
-	 * @Orm:Column(type="string", nullable=TRUE)
+	 * @ORM\Column(type="string", nullable=TRUE)
 	 */
 	private $email;
 
 	/**
 	 * @var \App\ExamplePackage\Entity\Address
-	 * @Orm:ManyToOne(targetEntity="Address", fetch="EAGER")
-	 * @Orm:JoinColumn(name="address_id", referencedColumnName="id")
+	 * @ORM\ManyToOne(targetEntity="Address", fetch="EAGER")
+	 * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
 	 */
 	private $address;
 
 	/**
 	 * @var string
-	 * @Orm:Column(type="text", nullable=TRUE)
+	 * @ORM\Column(type="text", nullable=TRUE)
 	 */
 	private $note;
 

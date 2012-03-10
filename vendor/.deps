@@ -14,15 +14,15 @@
 
 [doctrine]
     git=https://github.com/doctrine/doctrine2.git
-    version=2.1.4
+    version=2.2.1
 
 [doctrine-common]
     git=https://github.com/doctrine/common.git
-    version=2.1.3
+    version=2.2.1
 
 [doctrine-dbal]
     git=https://github.com/doctrine/dbal.git
-    version=2.1.5
+    version=2.2.1
 
 [doctrine-data-fixtures]
     git=https://github.com/doctrine/data-fixtures.git
