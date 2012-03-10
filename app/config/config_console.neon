@@ -2,6 +2,11 @@ includes:
     - config.neon
 
 
+kdyby:
+    debugger:
+        browser: "google-chrome %s"
+
+
 dbal:
     path: %appDir%/data/database.sqlite
     driver: pdo_sqlite
