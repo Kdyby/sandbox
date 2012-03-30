@@ -1,0 +1,7 @@
+{
+	"require": {
+		"php" : ">=5.3.2",
+		"kdyby/cms" : "dev-master",
+		"symfony/class-loader" : "2.0.6"
+	}
+}
