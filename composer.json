@@ -2,5 +2,11 @@
 	"require": {
 		"php" : ">=5.3.2",
 		"kdyby/cms" : "dev-master"
-	}
+	},
+	"repositories": [
+        {
+            "type": "vcs",
+            "url": "git://github.com/HosipLan/nette.git"
+        }
+    ]
 }
