@@ -5,15 +5,17 @@ function permissions($dir)
 {
 	umask(0000);
 	if (!is_dir($dir)) {
-		mkdir($dir, 0777, TRUE);
+		@mkdir($dir, 0777, TRUE);
 
 	} else {
-		chmod($dir, 0777);
+		@chmod($dir, 0777);
 	}
 }
 
 permissions(__DIR__ . '/app/log');
 permissions(__DIR__ . '/app/temp/cache');
+permissions(__DIR__ . '/vendor');
 
-system('vendor/vendors install');
+system('curl -s http://getcomposer.org/installer | php');
+system('php composer.phar install');
 system('rm ' . escapeshellarg(__FILE__));
