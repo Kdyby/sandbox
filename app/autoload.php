@@ -32,4 +32,11 @@ $robot->addDirectory(__DIR__ . '/presenters');
 $robot->addDirectory(__DIR__ . '/components');
 $robot->register();
 
+// Doctrine annotations
+AnnotationRegistry::registerLoader(function($class) use ($loader) {
+   $loader->loadClass($class);
+   return class_exists($class, FALSE);
+});
+AnnotationRegistry::registerFile(__DIR__ . '/../vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
+
 unset($loader, $robot); // cleanup
