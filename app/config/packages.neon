@@ -1,5 +1,4 @@
 - Kdyby\Package\FrameworkPackage\FrameworkPackage
 - Kdyby\Package\DoctrinePackage\DoctrinePackage
-- Kdyby\Package\AsseticPackage\AsseticPackage
 - Kdyby\Package\ComponentsPackage\ComponentsPackage
 - App\ExamplePackage\AppExamplePackage
